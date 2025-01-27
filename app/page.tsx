@@ -1,3 +1,5 @@
+import {PublicIntro} from "../components/PublicIntro/PublicIntro";
+
 export default function HomePage() {
-  return <div>Home page</div>;
+  return <PublicIntro />
 }

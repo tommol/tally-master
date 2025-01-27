@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2807a8b5-5736-4d56-919a-f7da3735d150" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/PublicIntro/PublicIntro.module.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/components/PublicIntro/PublicIntro.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/background.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +19,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="TypeScript JSX File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -50,7 +54,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/Users/tomaszmolis/Projects/tally-master/app/(backend)/contests/[id]/judges/[id]",
+    "last_opened_file_path": "/Users/tomaszmolis/Projects/tally-master/public",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -64,6 +68,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public" />
       <recent name="$PROJECT_DIR$/app/(backend)/contests/[id]/judges/[id]" />
       <recent name="$PROJECT_DIR$/app/(backend)/contests/[id]/judges" />
       <recent name="$PROJECT_DIR$/app/(backend)/contests/[id]" />
@@ -102,7 +107,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1737989559832</updated>
-      <workItem from="1737989561294" duration="11077000" />
+      <workItem from="1737989561294" duration="12608000" />
     </task>
     <servers />
   </component>
