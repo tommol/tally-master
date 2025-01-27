@@ -5,22 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2807a8b5-5736-4d56-919a-f7da3735d150" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/tally-master.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(backend)/contests/[contestId]/contestants/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(backend)/contests/[contestId]/judges/[judgeId]/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(backend)/contests/[contestId]/judges/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(backend)/contests/[contestId]/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(backend)/contests/page.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/(backend)/layout.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/ContestsTable/ContestsTable.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/ContestsTable/ContestsTable.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/CostentantsGrid/ContestantsGrid.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Header/Header.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/Header/Header.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,7 +102,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1737989559832</updated>
-      <workItem from="1737989561294" duration="10638000" />
+      <workItem from="1737989561294" duration="11077000" />
     </task>
     <servers />
   </component>
