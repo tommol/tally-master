@@ -1,0 +1,84 @@
+.steps {
+    margin: var(--mantine-spacing-md);
+    padding: var(--mantine-spacing-md);
+    border-radius: var(--mantine-radius-xs);
+    background-color: var(--mantine-color-gray-2);
+    border: 1px solid var(--mantine-color-gray-4);
+    box-shadow: var(--mantine-shadow-md);
+    width: 100%;
+}
+
+.stepContent {
+    margin: var(--mantine-spacing-md);
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    border-radius: var(--mantine-radius-xs);
+    background-color: var(--mantine-color-gray-0);
+    border: 1px solid var(--mantine-color-gray-4);
+    box-shadow: var(--mantine-shadow-xs);
+    min-height: 30dvh;
+    max-height: 70dvh;
+}
+
+.stepHeader {
+    padding: var(--mantine-spacing-md);
+    background: linear-gradient(
+            var(--mantine-color-blue-3) 0%,
+            var(--mantine-color-blue-7) 100%);
+    border-bottom: 1px solid var(--mantine-color-blue-8);
+
+    h1{
+        font-size: 28px;
+        font-weight: 900;
+        color: white;
+    }
+}
+
+.navButtons {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: var(--mantine-radius-xs);
+    background-color: var(--mantine-color-gray-2);
+    border: 1px solid var(--mantine-color-gray-4);
+    padding: var(--mantine-spacing-xs);
+
+    .button {
+        border-radius: 0;
+    }
+}
+
+.contestant{
+    border-radius: var(--mantine-radius-lg);
+    background-color: var(--mantine-color-gray-2);
+    border: 1px solid var(--mantine-color-gray-4);
+    box-shadow: var(--mantine-shadow-md);
+    padding: var(--mantine-spacing-md);
+    margin: var(--mantine-spacing-md);
+    display: flex;
+    justify-content: start;
+    align-items: flex-start;
+
+    .avatar {
+        width: 72px;
+        height: 72px;
+    }
+    .name{
+        font-size: 48px;
+        font-weight: 800;
+        margin-left: 10px;
+        border-left: 3px solid var(--mantine-color-gray-7);
+        color: var(--mantine-color-dark-5);
+        padding-left: 10px;
+        flex-grow: 1;
+    }
+}
+.rank{
+    font-size: 48px;
+    font-weight: 800;
+    background-color: var(--mantine-color-blue-6);
+    color: white;
+    padding: 10px;
+    text-align: center;
+}

@@ -20,6 +20,21 @@
         padding-bottom: calc(var(--mantine-spacing-xl) * 3);
     }
 }
+.header {
+    z-index: 0;
+    .headerLogo{
+        height: 64px;
+        @media (max-width: $mantine-breakpoint-sm) {
+            height: 32px;
+        }
+    }
+    .headerTitle {
+        font-size: 4rem;
+        color: var(--mantine-color-white);
+        vertical-align: top;
+        padding-bottom: 0.5rem;
+    }
+}
 
 .title {
     color: var(--mantine-color-white);

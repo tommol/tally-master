@@ -45,6 +45,7 @@ export async function getContests(): Promise<ContestInfoListItem[]> {
     cache: "no-store", // Ensures fresh data every request
     method: "GET",
   });
+  console.log(response)
   if (!response.ok) {
     throw new Error("Failed to fetch data");
   }

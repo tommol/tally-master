@@ -14,80 +14,79 @@ model Contest {
   logo        String
   enableApply Boolean
   Contestant  Contestant[]
-  OnlineVote  OnlineVote[]
-  PublicVote  PublicVote[]
   Judge       Judge[]
   Judgevote   Judgevote[]
+  OnlineVote  OnlineVote[]
+  PublicVote  PublicVote[]
 }
 
 model Contestant {
   id          Int          @id @default(autoincrement())
-  contest     Contest      @relation(fields: [contestId], references: [id])
   contestId   Int
   firstName   String
   lastName    String
   city        String
+  biogrpahy   String
   mainPhoto   String
+  motivation  String
+  nickname    String?
+  performance String
   photo1      String
   photo2      String
-  biogrpahy   String
-  motivation  String
   plans       String
-  performance String
-  nickname    String?
   email       String       @unique
   instagram   String?
+  contest     Contest      @relation(fields: [contestId], references: [id])
+  Judgevote   Judgevote[]
   OnlineVote  OnlineVote[]
-
-  PublicVote PublicVote[]
-  Judgevote  Judgevote[]
+  PublicVote  PublicVote[]
 }
 
 model OnlineVote {
   id           Int        @id @default(autoincrement())
-  contest      Contest    @relation(fields: [contestId], references: [id])
   contestId    Int
-  contestant   Contestant @relation(fields: [contestantId], references: [id])
   contestantId Int
   phone        String
   code         String
+  contest      Contest    @relation(fields: [contestId], references: [id])
+  contestant   Contestant @relation(fields: [contestantId], references: [id])
 
   @@unique([contestId, phone])
 }
 
 model PublicVote {
   id           Int        @id @default(autoincrement())
-  contest      Contest    @relation(fields: [contestId], references: [id])
   contestId    Int
-  contestant   Contestant @relation(fields: [contestantId], references: [id])
   contestantId Int
   amount       Int
+  contest      Contest    @relation(fields: [contestId], references: [id])
+  contestant   Contestant @relation(fields: [contestantId], references: [id])
 
   @@unique([contestId, contestantId])
 }
 
 model Judge {
   id        Int         @id @default(autoincrement())
-  contest   Contest     @relation(fields: [contestId], references: [id])
   contestId Int
   firstName String
   lastName  String
   nickname  String?
   title     String?
   email     String
-  JudgeVote Judgevote[]
+  contest   Contest     @relation(fields: [contestId], references: [id])
+  Judgevote Judgevote[]
 }
 
-model JudgeVote {
+model Judgevote {
   id           Int        @id @default(autoincrement())
-  contest      Contest    @relation(fields: [contestId], references: [id])
   contestId    Int
-  contestant   Contestant @relation(fields: [contestantId], references: [id])
   contestantId Int
-  judge        Judge      @relation(fields: [judgeId], references: [id])
   judgeId      Int
   category     Int
   rank         Int
+  Contest      Contest    @relation(fields: [contestId], references: [id])
+  Contestant   Contestant @relation(fields: [contestantId], references: [id])
+  Judge        Judge      @relation(fields: [judgeId], references: [id])
 
   @@unique([judgeId, category, rank])
 }

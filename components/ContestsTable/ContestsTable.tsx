@@ -6,7 +6,7 @@ import {
     IconEye,
     IconFileLike,
     IconMenu, IconPlayerPlay, IconReorder,
-    IconSquareCheck,
+    IconSquareCheck, IconTableShare,
     IconUserPlus,
     IconUsers,
     IconUsersPlus
@@ -84,6 +84,13 @@ export function ContestTable({data}: ContestsTableProps) {
                         >
                             Results
                         </Menu.Item>
+                        <Menu.Divider />
+                        <Menu.Item
+                        leftSection={<IconTableShare size={16} stroke={1.5}/>}
+                        component={Link} href={`/score/${row.id}`}
+                            >
+                            Score Table
+                            </Menu.Item>
                     </Menu.Dropdown>
                 </Menu>
             </Table.Td>

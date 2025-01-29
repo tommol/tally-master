@@ -1,5 +1,11 @@
-import { Button, Container, Overlay, Text, Title } from '@mantine/core';
+'use client';
+import {Button, Container, Flex, Group, Image, Overlay, Text, Title} from '@mantine/core';
 import classes from './PublicIntro.module.css';
+import Link from "next/link";
+import NextImage from 'next/image';
+import React from "react";
+import {IconLogin} from "@tabler/icons-react";
+import {RegisterLink, LoginLink} from "@kinde-oss/kinde-auth-nextjs/components";
 
 export function PublicIntro() {
     return (
@@ -9,15 +15,30 @@ export function PublicIntro() {
                 opacity={1}
                 zIndex={0}
             />
+
+            <Flex direction="row" p="sm" w="90dvw" mx="auto" className={classes.header}>
+                <Group>
+                    <Image src="/logo.png" h={62} alt="Warsaw Fetish Weekend" className={classes.headerLogo}/>
+                    <Title size="xl" c="white" className={classes.headerTitle}>Voting</Title>
+                </Group>
+                <div>
+                    <Button variant="light" size="xl" component={LoginLink}
+                            rightSection={<IconLogin />}
+                    >
+                        Login
+                    </Button>
+                </div>
+            </Flex>
             <Container className={classes.container} size="md">
-                <Title className={classes.title}>A fully featured React components library</Title>
+                <Title className={classes.title}>Warsaw Fetish Weekend 2005</Title>
                 <Text className={classes.description} size="xl" mt="xl">
-                    Build fully functional accessible web applications faster than ever – Mantine includes
-                    more than 120 customizable components and hooks to cover you in any situation
+                    When voting starts you will be able to cast your votes here. Right
+                    now we encourage to learn more about Warsaw Fetish Weekend 2005.
                 </Text>
 
-                <Button variant="gradient" size="xl" radius="xl" className={classes.control}>
-                    Get started
+                <Button variant="gradient" size="xl" radius="xl" className={classes.control} component={Link}
+                        href="https://wfw.plug.org.pl">
+                    About WFW
                 </Button>
             </Container>
         </div>

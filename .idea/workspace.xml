@@ -5,11 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2807a8b5-5736-4d56-919a-f7da3735d150" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/components/PublicIntro/PublicIntro.module.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/components/PublicIntro/PublicIntro.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(presenter)/host/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/(presenter)/score/[table]/page.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/api/auth/[kindeAuth]/route.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/logo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/app/actions.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/ContestsTable/ContestsTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/ContestsTable/ContestsTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/Header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/PublicIntro/PublicIntro.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/components/PublicIntro/PublicIntro.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/components/PublicIntro/PublicIntro.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/components/PublicIntro/PublicIntro.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prisma/prisma.schema" beforeDir="false" afterPath="$PROJECT_DIR$/prisma/prisma.schema" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,29 +27,30 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript JSX File" />
         <option value="CSS File" />
+        <option value="TypeScript File" />
+        <option value="TypeScript JSX File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "tommol"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;tommol&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/tommol/tally-master.git",
-    "accountId": "fa7627d8-d7e5-4eae-9d5a-d1576f10ca69"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/tommol/tally-master.git&quot;,
+    &quot;accountId&quot;: &quot;fa7627d8-d7e5-4eae-9d5a-d1576f10ca69&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2sDUIZSrOg6Iv5100ykrFXKMrSu" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -62,7 +71,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "npm.dev.executor": "Run",
-    "ts.external.directory.path": "/Users/tomaszmolis/Projects/tally-master/node_modules/typescript/lib",
+    "ts.external.directory.path": "/Applications/WebStorm.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -107,7 +116,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1737989559832</updated>
-      <workItem from="1737989561294" duration="12608000" />
+      <workItem from="1737989561294" duration="18951000" />
+      <workItem from="1738106401989" duration="1338000" />
+      <workItem from="1738177293954" duration="3339000" />
     </task>
     <servers />
   </component>
