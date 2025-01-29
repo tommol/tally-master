@@ -2,8 +2,9 @@
 import React, {useState} from 'react';
 import {ActionIcon, Menu, Text, Table, useMantineTheme} from '@mantine/core';
 import {
-    IconCalendar, IconDeviceMobilePlus,
+    IconCalendar, IconChartBar, IconDeviceMobilePlus,
     IconEye,
+    IconFileLike,
     IconMenu, IconPlayerPlay, IconReorder,
     IconSquareCheck,
     IconUserPlus,
@@ -63,9 +64,9 @@ export function ContestTable({data}: ContestsTableProps) {
                         </Menu.Item>
                         <Menu.Divider />
                         <Menu.Item
-                            leftSection={<IconDeviceMobilePlus size={16} stroke={1.5} />}
+                            leftSection={<IconPlayerPlay size={16} stroke={1.5} />}
                         >
-                            Add Televotes
+                            Start Online Voting
                         </Menu.Item>
                         <Menu.Item
                             leftSection={<IconReorder size={16} stroke={1.5} />}
@@ -73,9 +74,15 @@ export function ContestTable({data}: ContestsTableProps) {
                             Add Jury Votes
                         </Menu.Item>
                         <Menu.Item
-                            leftSection={<IconPlayerPlay size={16} stroke={1.5} />}
+                            leftSection={<IconFileLike size={16} stroke={1.5} />}
                         >
-                            Start voting
+                            Add Audience Votes
+                        </Menu.Item>
+                        <Menu.Divider />
+                        <Menu.Item component={Link} href={`/contests/${row.id}/results`}
+                            leftSection={<IconChartBar size={16} stroke={1.5} />}
+                        >
+                            Results
                         </Menu.Item>
                     </Menu.Dropdown>
                 </Menu>

@@ -1,38 +1,38 @@
 'use client';
 import {
-    AspectRatio,
     BackgroundImage,
     Badge,
     Button,
     Card,
     Flex,
     Grid,
-    Paper,
-    Skeleton,
     Title,
     Transition
 } from "@mantine/core";
 import React, { useEffect, useState } from "react";
 import { IconEye } from "@tabler/icons-react";
+import Link from "next/link";
 
-export type ContestantGridItem = {
+export type JudgesGridItem = {
     id: string,
     name: string,
     image: string,
+    title: string,
 }
 
-export interface ContestantsGridProps {
-    data: ContestantGridItem[];
+export interface JudgesGridProps {
+    contestId: string;
+    data: JudgesGridItem[];
 }
 
-export default function ContestantsGrid({ data }: ContestantsGridProps) {
+export default function JudgesGrid({ data , contestId}: JudgesGridProps) {
     const [mounted, setMounted] = useState(false);
 
     // Trigger the animation on component mount
     useEffect(() => {
         setMounted(true);
     }, []);
-    const gridItem = (item: ContestantGridItem, index: number) => (
+    const gridItem = (item: JudgesGridItem, index: number) => (
         <Grid.Col span={4} key={item.id}>
             <Transition
                 mounted={mounted}
@@ -46,11 +46,11 @@ export default function ContestantsGrid({ data }: ContestantsGridProps) {
                         <BackgroundImage src={item.image} h={300}>
                             <Flex direction="column" justify="space-between" h={300}>
                                 <Flex direction="column" justify="space-between" p="md">
-                                    <Badge size="md" color="orange">Canidate #{item.id}</Badge>
-                                    <Title size="xl" order={1} c={"var(--mantine-color-gray-0)"} >{item.name}</Title>
+                                    <Badge size="md" color="orange">{item.title}</Badge>
+                                    <Title size="xl" order={1} c={"var(--mantine-color-gray-3)"} >{item.name}</Title>
                                 </Flex>
                                 <Flex direction="row" justify="flex-end" bg={"rgba(255,255,255,0.4"} p="sm">
-                                    <Button leftSection={<IconEye />} variant="filled">
+                                    <Button leftSection={<IconEye />} variant="filled" component={Link} href={`/contests/${contestId}/judges/${item.id}`}>
                                         View
                                     </Button>
                                 </Flex>
@@ -64,10 +64,11 @@ export default function ContestantsGrid({ data }: ContestantsGridProps) {
         <Grid gutter="sm" miw={"900"} my="md">
             <Grid.Col>
                 <Flex direction="row" p="sm" justify="space-between" bg="var(--mantine-color-blue-0">
-                    <Title>Contestants</Title>
+                    <Title>Judges</Title>
+                    <Button variant="filled" size="compact-lg" my="xs" color="blue">Add</Button>
                 </Flex>
             </Grid.Col>
-            {data.map((item: ContestantGridItem, index: number) => gridItem(item, index))}
+            {data.map((item: JudgesGridItem, index: number) => gridItem(item, index))}
         </Grid>
     )
 }

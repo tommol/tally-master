@@ -1,19 +1,9 @@
 import {ContestInfoListItem, ContestTable} from "../../../components/ContestsTable/ContestsTable";
-import {Title} from "@mantine/core";
+import { getContests } from "../../actions";
 
-const data: ContestInfoListItem[] = [
-    {
-        id: '1',
-        name: "Mister Leatherman Poland",
-        year: "2025"
-    },
-    {
-        id: '2',
-        name: "Mister Rubber Poland",
-        year: "2025"
-    }
-]
-export default function Contestants() {
+
+export default async function Contestants() {
+    const data = await getContests();
     return (<>
         <h1>Contests</h1>
         <ContestTable data={data}/>

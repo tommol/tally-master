@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Contest {
+  id          Int          @id @default(autoincrement())
+  name        String
+  year        String
+  logo        String
+  enableApply Boolean
+  Contestant  Contestant[]
+  OnlineVote  OnlineVote[]
+  PublicVote  PublicVote[]
+  Judge       Judge[]
+  Judgevote   Judgevote[]
+}
+
+model Contestant {
+  id          Int          @id @default(autoincrement())
+  contest     Contest      @relation(fields: [contestId], references: [id])
+  contestId   Int
+  firstName   String
+  lastName    String
+  city        String
+  mainPhoto   String
+  photo1      String
+  photo2      String
+  biogrpahy   String
+  motivation  String
+  plans       String
+  performance String
+  nickname    String?
+  email       String       @unique
+  instagram   String?
+  OnlineVote  OnlineVote[]
+
+  PublicVote PublicVote[]
+  Judgevote  Judgevote[]
+}
+
+model OnlineVote {
+  id           Int        @id @default(autoincrement())
+  contest      Contest    @relation(fields: [contestId], references: [id])
+  contestId    Int
+  contestant   Contestant @relation(fields: [contestantId], references: [id])
+  contestantId Int
+  phone        String
+  code         String
+
+  @@unique([contestId, phone])
+}
+
+model PublicVote {
+  id           Int        @id @default(autoincrement())
+  contest      Contest    @relation(fields: [contestId], references: [id])
+  contestId    Int
+  contestant   Contestant @relation(fields: [contestantId], references: [id])
+  contestantId Int
+  amount       Int
+
+  @@unique([contestId, contestantId])
+}
+
+model Judge {
+  id        Int         @id @default(autoincrement())
+  contest   Contest     @relation(fields: [contestId], references: [id])
+  contestId Int
+  firstName String
+  lastName  String
+  nickname  String?
+  title     String?
+  email     String
+  JudgeVote Judgevote[]
+}
+
+model JudgeVote {
+  id           Int        @id @default(autoincrement())
+  contest      Contest    @relation(fields: [contestId], references: [id])
+  contestId    Int
+  contestant   Contestant @relation(fields: [contestantId], references: [id])
+  contestantId Int
+  judge        Judge      @relation(fields: [judgeId], references: [id])
+  judgeId      Int
+  category     Int
+  rank         Int
+
+  @@unique([judgeId, category, rank])
+}
