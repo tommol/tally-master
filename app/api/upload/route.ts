@@ -13,7 +13,7 @@ export async function POST(req: Request) {
     try {
         const fileBuffer = await file.arrayBuffer();
  
-        const fileName = `${process.env.BLOB_BASE_PATH}/${directory}/${file.name}`;
+        const fileName = `${directory}/${file.name}`;
 
         const {url} = await put(fileName, fileBuffer, {
             access: "public",
