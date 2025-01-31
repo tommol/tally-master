@@ -4,7 +4,7 @@ import prisma from "../../../../../../../lib/prisma";
 /// This is the route for reading all contestants
 export async function GET(request:NextRequest, { params }: { params: Promise<{ contestId: string, judgeId: string }> }){
     const{contestId, judgeId} = await params;
-    const votes = await prisma.Judgevote.findMany({
+    const votes = await prisma.judgevote.findMany({
         where:{
             contestId: Number.parseInt(contestId),
             judgeId: Number.parseInt(judgeId)
