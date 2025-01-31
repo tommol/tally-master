@@ -11,7 +11,7 @@ export interface ApplyFormProps {
     contestName: string;
 }
 
-export default function ApplyForm({ contestId, contestName }: ApplyFormProps) {
+export default function ApplyForm({  contestId, contestName }: ApplyFormProps) {
 
     const form = useForm({
         mode: 'uncontrolled',
@@ -172,9 +172,9 @@ export default function ApplyForm({ contestId, contestName }: ApplyFormProps) {
                         onBlur={(e) => form.validateField('instagram')}
                         rightSection={toolTip('Podanie powoli nam oznczać twoje konto w celu promocji')}
                     />
-                    <ImageUploader inputProps={form.getInputProps('mainPhoto')} rightSection={toolTip('Prześlij główne zdjęcie')} label="Zdjęcie główne" />
-                    <ImageUploader inputProps={form.getInputProps('photo1')} rightSection={toolTip('Prześlij dodatkowe zdjęcie')} label="Zdjęcie dodatkowe" />
-                    <ImageUploader inputProps={form.getInputProps('photo2')} rightSection={toolTip('Prześlij dodatkowe zdjęci')} label="Zdjęcie sylwetki" />
+                    <ImageUploader inputProps={form.getInputProps('mainPhoto')} rightSection={toolTip('Prześlij główne zdjęcie')} label="Zdjęcie główne"  directory={`contestants/${contestId}`}/>
+                    <ImageUploader inputProps={form.getInputProps('photo1')} rightSection={toolTip('Prześlij dodatkowe zdjęcie')} label="Zdjęcie dodatkowe" directory={`contestants/${contestId}`} />
+                    <ImageUploader inputProps={form.getInputProps('photo2')} rightSection={toolTip('Prześlij dodatkowe zdjęci')} label="Zdjęcie sylwetki"  directory={`contestants/${contestId}`}/>
                     <Button type="submit" onClick={(e) => e.preventDefault()} disabled={!form.isValid} classNames={classes}
                         variant="filled" size="lg" color="red" my="sm" w="70%">
                         Wyślij zgłoszenie

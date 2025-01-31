@@ -9,9 +9,10 @@ interface ImageUploaderProps {
     placeholder?: string;
     inputProps: ReturnType<typeof Object>; // Accepts props from `getInputProps`
     rightSection?: React.ReactNode;
+    directory: string;
 }
 
-export default function ImageUploader({ inputProps, rightSection, label, placeholder }: ImageUploaderProps) {
+export default function ImageUploader({ inputProps, rightSection, label, placeholder, directory }: ImageUploaderProps) {
     const [file, setFile] = useState<File | null>(null);
     const [imageUrl, setImageUrl] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
@@ -24,6 +25,7 @@ export default function ImageUploader({ inputProps, rightSection, label, placeho
 
         const formData = new FormData();
         formData.append("file", file);
+        formData.append("directory", directory);
 
         const res = await fetch("/api/upload", {
             method: "POST",
