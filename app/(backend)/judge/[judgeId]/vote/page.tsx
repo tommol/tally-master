@@ -13,14 +13,11 @@ import {getContestants} from "../../../../actions";
 
 export default async function StartVotingPage() {
     const categories: JuryCategory[] = [
-        {id: 0, name: 'Instruction', icon: <IconFileDescription/>},
         {id: 1, name: 'Presence', icon: <IconNumber1/>},
         {id: 2, name: 'Erudition', icon: <IconNumber2/>},
         {id: 3, name: 'Creativity', icon: <IconNumber3/>},
         {id: 4, name: 'Integration', icon: <IconNumber4/>},
         {id: 5, name: 'Activity', icon: <IconNumber5/>},
-        {id: 6, name: 'Verify', icon: <IconCheck/>},
-
     ];
     const contestants: Contestant[] = (await getContestants(1)).map((contestant) => {
         return {

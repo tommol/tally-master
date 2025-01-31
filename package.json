@@ -12,6 +12,7 @@
     "@hello-pangea/dnd": "^17.0.0",
     "@kinde-oss/kinde-auth-nextjs": "^2.4.6",
     "@mantine/core": "7.16.2",
+    "@mantine/form": "^7.16.2",
     "@mantine/hooks": "7.16.2",
     "@neondatabase/serverless": "^0.10.4",
     "@prisma/client": "^6.3.0",
@@ -19,7 +20,8 @@
     "@vercel/blob": "^0.27.1",
     "next": "15.1.6",
     "react": "19.0.0",
-    "react-dom": "19.0.0"
+    "react-dom": "19.0.0",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@types/node": "22.10.7",

@@ -81,4 +81,18 @@
     color: white;
     padding: 10px;
     text-align: center;
+    min-width: 48px;
+    max-width: 72px;
+}
+
+.empty{
+    font-size: 48px;
+    font-weight: 800;
+    background-color: var(--mantine-color-gray-6);
+    color: var(--mantine-color-dark-6);
+    padding: 10px;
+    text-align: center;
+    min-width: 48px;
+    max-width: 72px;
+    display: block;
 }

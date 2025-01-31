@@ -87,3 +87,5 @@ export async function getJudges(contestId:number): Promise<JudgesGridItem[]> {
   }));
   return mapped;
 }
+
+export async function apply(){}
