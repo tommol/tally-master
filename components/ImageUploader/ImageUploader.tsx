@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { FileInput, Text, Loader, TextInput } from "@mantine/core";
+import { MouseEventHandler, useState } from "react";
+import { FileInput, Text, Loader, TextInput, Button, Group } from "@mantine/core";
 import classes from "./ImageUploader.module.css";
 
 interface ImageUploaderProps {
@@ -11,52 +11,49 @@ interface ImageUploaderProps {
     rightSection?: React.ReactNode;
 }
 
-export default function ImageUploader({ inputProps, rightSection , label, placeholder}: ImageUploaderProps) {
-    const [loading, setLoading] = useState(false);
+export default function ImageUploader({ inputProps, rightSection, label, placeholder }: ImageUploaderProps) {
+    const [file, setFile] = useState<File | null>(null);
     const [imageUrl, setImageUrl] = useState<string | null>(null);
-    const [error, setError] = useState<string | null>(null);
+    const [loading, setLoading] = useState(false);
 
-    const handleFileChange = async (file: File | null) => {
+    const uploadImage = async () => {
+
         if (!file) return;
 
         setLoading(true);
-        setError(null);
 
         const formData = new FormData();
         formData.append("file", file);
 
-        try {
-            const res = await fetch("/api/upload", {
-                method: "POST",
-                body: formData,
-            });
+        const res = await fetch("/api/upload", {
+            method: "POST",
+            body: formData,
+        });
 
-            const data = await res.json();
-
-            if (!res.ok) {
-                throw new Error(data.error || "Upload failed");
-            }
-
-            setImageUrl(data.url);
-        } catch (err) {
-            setError((err as Error).message);
-        } finally {
-            setLoading(false);
-        }
+        const data = await res.json();
+        setImageUrl(data.url);
+        setLoading(false);
     };
 
     return (<>
+        <Group>
             {!loading &&
-                       <FileInput w="70%"
-                classNames={classes}
-                placeholder={placeholder}
-                onChange={handleFileChange}
-                accept="image/*"
-                label={label}
-                rightSection={rightSection} 
-            />}
-            {loading && <Loader />}
-            {error && <Text c="red">{error}</Text>}
-            {imageUrl && <TextInput value={imageUrl} readOnly {...inputProps}/>}
-        </>);
+                <FileInput w="50%"
+                    classNames={classes}
+                    placeholder={placeholder}
+                    value={file}
+                    onChange={setFile}
+                    accept="image/*"
+                    label={label}
+                    rightSection={rightSection}
+                />}
+            <Button onClick={(e) => {
+                e.preventDefault();
+                uploadImage();
+            }} disabled={!file || loading}>
+                {loading ? <Loader size="xs" /> : "Upload"}
+            </Button>
+        </Group>
+        {imageUrl && <TextInput value={imageUrl} readOnly {...inputProps} />}
+    </>);
 }

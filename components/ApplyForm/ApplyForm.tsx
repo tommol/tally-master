@@ -1,11 +1,9 @@
 'use client';
-import { Text, Paper, TextInput, Title, Tooltip, Center, Container, Textarea, FileInput, Button } from "@mantine/core";
+import { Text, Paper, TextInput, Title, Tooltip, Center, Container, Textarea, Button } from "@mantine/core";
 import { useForm, zodResolver } from "@mantine/form";
 import { applySchema } from "./schema";
 import classes from './ApplyForm.module.css';
 import { IconInfoCircle } from "@tabler/icons-react";
-import { useRef, useState } from "react";
-import { PutBlobResult } from "@vercel/blob";
 import ImageUploader from "../ImageUploader/ImageUploader";
 
 export interface ApplyFormProps {
