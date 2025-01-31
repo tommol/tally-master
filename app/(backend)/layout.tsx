@@ -8,7 +8,7 @@ export default function AdminLayout({children}: { children: any }) {
     return (
         <Flex direction="column" justify="flex-start">
             <Header/>
-            <Container size="lg" mt="0">
+            <Container size="lg" miw={980} mt="0">
                 {children}
             </Container>
         </Flex>

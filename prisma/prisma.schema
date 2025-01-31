@@ -8,16 +8,22 @@ datasource db {
 }
 
 model Contest {
-  id          Int          @id @default(autoincrement())
-  name        String
-  year        String
-  logo        String
-  enableApply Boolean
-  Contestant  Contestant[]
-  Judge       Judge[]
-  Judgevote   Judgevote[]
-  OnlineVote  OnlineVote[]
-  PublicVote  PublicVote[]
+  id            Int          @id @default(autoincrement())
+  name          String
+  year          String
+  logo          String
+  enableApply   Boolean      @default(false)
+  enableVoting  Boolean      @default(false)
+  enableJudging Boolean      @default(false)
+  votingStart   DateTime?
+  votingEnd     DateTime?
+  applyStart    DateTime?
+  applyEnd      DateTime?
+  Contestant    Contestant[]
+  Judge         Judge[]
+  Judgevote     Judgevote[]
+  OnlineVote    OnlineVote[]
+  PublicVote    PublicVote[]
 }
 
 model Contestant {

@@ -1,9 +1,9 @@
 'use client';
-import { Text, Paper, TextInput, Title, Tooltip, Center, Container, Textarea, Button } from "@mantine/core";
-import { useForm, zodResolver } from "@mantine/form";
-import { applySchema } from "./schema";
+import {Text, Paper, TextInput, Title, Tooltip, Center, Container, Textarea, Button} from "@mantine/core";
+import {useForm, zodResolver} from "@mantine/form";
+import {applySchema} from "./schema";
 import classes from './ApplyForm.module.css';
-import { IconInfoCircle } from "@tabler/icons-react";
+import {IconInfoCircle} from "@tabler/icons-react";
 import ImageUploader from "../ImageUploader/ImageUploader";
 
 export interface ApplyFormProps {
@@ -11,7 +11,7 @@ export interface ApplyFormProps {
     contestName: string;
 }
 
-export default function ApplyForm({  contestId, contestName }: ApplyFormProps) {
+export default function ApplyForm({contestId, contestName}: ApplyFormProps) {
 
     const form = useForm({
         mode: 'uncontrolled',
@@ -39,11 +39,11 @@ export default function ApplyForm({  contestId, contestName }: ApplyFormProps) {
             label={info}
             position="top-end"
             withArrow
-            transitionProps={{ transition: 'pop-bottom-right' }}
+            transitionProps={{transition: 'pop-bottom-right'}}
         >
-            <Text component="div" c="dimmed" style={{ cursor: 'help' }}>
+            <Text component="div" c="dimmed" style={{cursor: 'help'}}>
                 <Center>
-                    <IconInfoCircle size={18} stroke={1.5} />
+                    <IconInfoCircle size={18} stroke={1.5}/>
                 </Center>
             </Text>
         </Tooltip>
@@ -53,7 +53,7 @@ export default function ApplyForm({  contestId, contestName }: ApplyFormProps) {
         <Paper mx="auto" my="lg" p="lg" shadow="xs" maw={800} withBorder>
             <Title order={1} size="h1">Formularz Zgłoszeniowy</Title>
             <Title order={3} size="h2">Wybory {contestName}</Title>
-            <hr />
+            <hr/>
             <form onSubmit={form.onSubmit((values) => console.log(values))}>
                 <Container size="lg">
                     <TextInput
@@ -172,11 +172,28 @@ export default function ApplyForm({  contestId, contestName }: ApplyFormProps) {
                         onBlur={(e) => form.validateField('instagram')}
                         rightSection={toolTip('Podanie powoli nam oznczać twoje konto w celu promocji')}
                     />
-                    <ImageUploader inputProps={form.getInputProps('mainPhoto')} rightSection={toolTip('Prześlij główne zdjęcie')} label="Zdjęcie główne"  directory={`contestants/${contestId}`}/>
-                    <ImageUploader inputProps={form.getInputProps('photo1')} rightSection={toolTip('Prześlij dodatkowe zdjęcie')} label="Zdjęcie dodatkowe" directory={`contestants/${contestId}`} />
-                    <ImageUploader inputProps={form.getInputProps('photo2')} rightSection={toolTip('Prześlij dodatkowe zdjęci')} label="Zdjęcie sylwetki"  directory={`contestants/${contestId}`}/>
-                    <Button type="submit" onClick={(e) => e.preventDefault()} disabled={!form.isValid} classNames={classes}
-                        variant="filled" size="lg" color="red" my="sm" w="70%">
+                    <ImageUploader inputProps={form.getInputProps('mainPhoto')}
+                                   rightSection={toolTip('Prześlij główne zdjęcie')}
+                                   label="Zdjęcie główne"
+                                   directory={`contestants/${contestId}`}
+                                   name="mainPhoto"
+                                   parent={form}
+                    />
+                    <ImageUploader inputProps={form.getInputProps('photo1')}
+                                   rightSection={toolTip('Prześlij dodatkowe zdjęcie')}
+                                   label="Zdjęcie dodatkowe"
+                                   directory={`contestants/${contestId}`}
+                                   name="photo1"
+                                   parent={form}/>
+                    <ImageUploader inputProps={form.getInputProps('photo2')}
+                                   rightSection={toolTip('Prześlij dodatkowe zdjęci')}
+                                   label="Zdjęcie sylwetki"
+                                   directory={`contestants/${contestId}`}
+                                   name="photo2"
+                                   parent={form} />
+                    <Button type="submit" onClick={(e) => e.preventDefault()} disabled={!form.isValid}
+                            classNames={classes}
+                            variant="filled" size="lg" color="red" my="sm" w="70%">
                         Wyślij zgłoszenie
                     </Button>
                 </Container>

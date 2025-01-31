@@ -4,6 +4,15 @@ import { JudgeVoteItem } from "../components/JudgeVotingTable/JudgeVotingTable";
 import { ContestInfoListItem } from "../components/ContestsTable/ContestsTable";
 import { ContestantGridItem } from "../components/CostentantsGrid/ContestantsGrid";
 import { JudgesGridItem } from "../components/JudgesGrid/JudgesGrid";
+import {ContestInfoType} from "../components/ContestInfo/ContestInfo";
+
+export interface ContestAction {
+  enableJudging?: boolean;
+  applyStart?: Date;
+  applyEnd?: Date;
+  votingStart?: Date;
+  votingEnd?: Date;
+}
 
 export async function getJudgeVotes(contestId: number, judgeId: number): Promise<JudgeVoteItem[]> {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contests/${contestId}/judges/${judgeId}/votes`, {
@@ -45,11 +54,24 @@ export async function getContests(): Promise<ContestInfoListItem[]> {
     cache: "no-store", // Ensures fresh data every request
     method: "GET",
   });
-  console.log(response)
   if (!response.ok) {
     throw new Error("Failed to fetch data");
   }
   const data = await response.json();
+  return data;
+}
+
+export async function getContest(id:number): Promise<ContestInfoType> {
+  console.log(`Readin contest: ${id}`);
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contests/${id}`, {
+    cache: "no-store", // Ensures fresh data every request
+    method: "GET",
+  });
+  if (!response.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  const data = await response.json();
+  console.log(data);
   return data;
 }
 
@@ -88,4 +110,68 @@ export async function getJudges(contestId:number): Promise<JudgesGridItem[]> {
   return mapped;
 }
 
-export async function apply(){}
+export async function setContestApplyStart(start:Date, contestId:number) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contests/${contestId}`, {
+    cache: "no-store", // Ensures fresh data every request
+    method: "PUT",
+    body: JSON.stringify({
+      applyStart: start,
+    })
+  });
+  if (!response.ok) {
+    throw new Error("Failed to fetch data");
+  }
+}
+export async function setContestApplyEnd(end:Date, contestId:number) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contests/${contestId}`, {
+    cache: "no-store", // Ensures fresh data every request
+    method: "PUT",
+    body: JSON.stringify({
+      applyEnd: end,
+    })
+  });
+  if (!response.ok) {
+    throw new Error("Failed to fetch data");
+  }
+}
+
+export async function setContestVotingStart(start:Date, contestId:number) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contests/${contestId}`, {
+    cache: "no-store", // Ensures fresh data every request
+    method: "PUT",
+    body: JSON.stringify({
+      votingStart: start,
+    })
+  });
+  if (!response.ok) {
+    throw new Error("Failed to fetch data");
+  }
+}
+export async function setContestVotingEnd(end:Date, contestId:number) {
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contests/${contestId}`, {
+    cache: "no-store", // Ensures fresh data every request
+    method: "PUT",
+    body: JSON.stringify({
+      votingEnd: end,
+    })
+  });
+  if (!response.ok) {
+    throw new Error("Failed to fetch data");
+  }
+}
+export async function toggleContestJudging(judging:boolean, contestId:number) {
+  const data:ContestAction = {
+    enableJudging:judging,
+  }
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contests/${contestId}`, {
+    cache: "no-store", // Ensures fresh data every request
+    method: "PUT",
+    body: JSON.stringify(data)
+  });
+  if (!response.ok) {
+    throw new Error("Failed to fetch data");
+  }
+}
+
+
+

@@ -1,8 +1,10 @@
 "use client";
 
-import { MouseEventHandler, useState } from "react";
-import { FileInput, Text, Loader, TextInput, Button, Group } from "@mantine/core";
+import {useState} from "react";
+import {FileInput, Button, Group, Progress, Badge, InputLabel} from "@mantine/core";
 import classes from "./ImageUploader.module.css";
+import {UseFormReturnType} from "@mantine/form";
+import {IconFileCheck} from "@tabler/icons-react";
 
 interface ImageUploaderProps {
     label: string;
@@ -10,9 +12,19 @@ interface ImageUploaderProps {
     inputProps: ReturnType<typeof Object>; // Accepts props from `getInputProps`
     rightSection?: React.ReactNode;
     directory: string;
+    name: string;
+    parent: UseFormReturnType<any>
 }
 
-export default function ImageUploader({ inputProps, rightSection, label, placeholder, directory }: ImageUploaderProps) {
+export default function ImageUploader({
+                                          name,
+                                          parent,
+                                          inputProps,
+                                          rightSection,
+                                          label,
+                                          placeholder,
+                                          directory
+                                      }: ImageUploaderProps) {
     const [file, setFile] = useState<File | null>(null);
     const [imageUrl, setImageUrl] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
@@ -35,27 +47,36 @@ export default function ImageUploader({ inputProps, rightSection, label, placeho
         const data = await res.json();
         setImageUrl(data.url);
         setLoading(false);
+        parent.setValues({
+            ...parent.getValues(),
+            [name]: data.url,
+        });
+        console.log(parent.getValues());
     };
 
     return (<>
-        <Group>
-            {!loading &&
-                <FileInput w="50%"
-                    classNames={classes}
-                    placeholder={placeholder}
-                    value={file}
-                    onChange={setFile}
-                    accept="image/*"
-                    label={label}
-                    rightSection={rightSection}
-                />}
+        {!loading && !imageUrl && <Group>
+            <FileInput w="50%"
+                       classNames={classes}
+                       placeholder={placeholder}
+                       value={file}
+                       onChange={setFile}
+                       accept="image/*"
+                       label={label}
+                       rightSection={rightSection}
+            />
             <Button onClick={(e) => {
                 e.preventDefault();
                 uploadImage();
             }} disabled={!file || loading}>
-                {loading ? <Loader size="xs" /> : "Upload"}
+                Upload
             </Button>
-        </Group>
-        {imageUrl && <TextInput value={imageUrl} readOnly {...inputProps} />}
+        </Group>}
+            {loading && <Progress value={100} animated size="md" m="sm"/>}
+            {imageUrl && <Group my="sm">
+                <InputLabel>{label}</InputLabel>
+                <Badge color="green" m="sm" size="xl"
+                                       leftSection={<IconFileCheck/>}>Uploaded</Badge>
+            </Group>}
     </>);
 }
