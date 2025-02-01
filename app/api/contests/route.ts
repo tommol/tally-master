@@ -18,7 +18,6 @@ export async function POST(request:NextRequest){
             name: body.name,
             year: body.year,
             logo: body.logo,
-            enableApply:false,
         }
     });
 
