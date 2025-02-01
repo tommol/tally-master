@@ -15,7 +15,11 @@ const transporter = nodemailer.createTransport({
     auth: {
         user: SMTP_SERVER_USERNAME,
         pass: SMTP_SERVER_PASSWORD
-    }
+    },
+    tls: {
+        minVersion: 'TLSv1.2', // Enforce TLS 1.2
+        rejectUnauthorized: true, // Ensure valid certificate
+    },
 });
 
 export async function sendMail({
