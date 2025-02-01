@@ -12,13 +12,12 @@ model Contest {
   name          String
   year          String
   logo          String
-  enableApply   Boolean      @default(false)
-  enableVoting  Boolean      @default(false)
   enableJudging Boolean      @default(false)
   votingStart   DateTime?
   votingEnd     DateTime?
   applyStart    DateTime?
   applyEnd      DateTime?
+  isArchived    Boolean      @default(false)
   Contestant    Contestant[]
   Judge         Judge[]
   Judgevote     Judgevote[]
@@ -32,7 +31,8 @@ model Contestant {
   firstName   String
   lastName    String
   city        String
-  biogrpahy   String
+  biography   String       @default("")
+  birthdate   DateTime     @default(now())
   mainPhoto   String
   motivation  String
   nickname    String?

@@ -1,10 +1,20 @@
+'use client';
 import {Button, Container, Flex, Image, Paper, Text, Title} from "@mantine/core";
 import classes from "./JudgeIntro.module.css";
 import Link from "next/link";
+import {sendMail} from "../../../email/sender";
 
 export default function JudgeIntro(){
     return (<Paper shadow="md" withBorder={true} h={560} w={1080} p={10} m="md" radius="lg"
                    className={classes.wrapper}>
+        <Button onClick={() => {
+            sendMail({
+                email: 'wfw@plug.org.pl',
+                sendTo: 'tomasz.slawomir.molis@gmail.com',
+                subject:'Test',
+                text:'Test'
+            })
+        }}>Test</Button>
         <Flex direction="row" justify="flex-start" h={560}>
             <Image src="judgeVote.png" fit="cover"
                    w={340}

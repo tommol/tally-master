@@ -10,8 +10,7 @@ import {
 export type ContestInfoType ={
     id: number;
     name: string;
-    applyEnabled: boolean;
-    votingEnabled: boolean;
+    year:string;
     enableJudging: boolean;
     applyStart?: Date;
     applyEnd?: Date;
@@ -30,7 +29,7 @@ export default function ContestInfo({data}: ContestInfoProps) {
             <Group align="start">
                 <Image src={data.logo} alt="logo" width={200} maw={200}/>
                 <Flex direction="column">
-                    <Title>{data.name}</Title>
+                    <Title>{data.name} {data.year}</Title>
                     <Group my="sm">
                         <DateTimePicker label="Application Start"
                                         placeholder="Pick date and time"

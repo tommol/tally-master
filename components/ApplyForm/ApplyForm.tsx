@@ -1,17 +1,22 @@
 'use client';
-import {Text, Paper, TextInput, Title, Tooltip, Center, Container, Textarea, Button} from "@mantine/core";
+import {Text, Paper, TextInput, Title, Tooltip, Center, Container, Textarea, Button, Flex, Image} from "@mantine/core";
 import {useForm, zodResolver} from "@mantine/form";
 import {applySchema} from "./schema";
 import classes from './ApplyForm.module.css';
 import {IconInfoCircle} from "@tabler/icons-react";
 import ImageUploader from "../ImageUploader/ImageUploader";
+import {DatePickerInput} from "@mantine/dates";
+import {sendApplication} from "../../app/actions";
+import {z} from "zod";
+import {redirect} from "next/navigation";
 
 export interface ApplyFormProps {
     contestId: number;
     contestName: string;
+    contestLogo: string;
 }
 
-export default function ApplyForm({contestId, contestName}: ApplyFormProps) {
+export default function ApplyForm({contestId, contestName, contestLogo}: ApplyFormProps) {
 
     const form = useForm({
         mode: 'uncontrolled',
@@ -19,11 +24,13 @@ export default function ApplyForm({contestId, contestName}: ApplyFormProps) {
             firstName: '',
             lastName: '',
             nickname: '',
+            birthday: new Date(),
             email: '',
             city: '',
             bio: '',
             motivation: '',
             performance: '',
+            plans:'',
             instagram: '',
             mainPhoto: '',
             photo1: '',
@@ -48,14 +55,25 @@ export default function ApplyForm({contestId, contestName}: ApplyFormProps) {
             </Text>
         </Tooltip>
     );
-
+    const submitHandler = async (values: z.infer<typeof applySchema>) => {
+        const  success = await sendApplication(contestId.toString(), values);
+        if(success){
+            redirect("/apply/success")
+        }
+    }
     return (
-        <Paper mx="auto" my="lg" p="lg" shadow="xs" maw={800} withBorder>
-            <Title order={1} size="h1">Formularz Zgłoszeniowy</Title>
-            <Title order={3} size="h2">Wybory {contestName}</Title>
-            <hr/>
-            <form onSubmit={form.onSubmit((values) => console.log(values))}>
-                <Container size="lg">
+        <Paper mx="auto" my="lg"  shadow="xs" maw={800} withBorder>
+            <Flex direction="row" justify="flex-start" p="xs" bg={"var(--mantine-color-blue-1)"}>
+                <Image src={contestLogo} maw={80} />
+                <div>
+                    <Title order={1} size="h1">Formularz Zgłoszeniowy</Title>
+                    <Title order={3} size="h2">Wybory {contestName}</Title>
+                </div>
+            </Flex>
+            <form onSubmit={form.onSubmit((values) => {
+                return submitHandler(values);
+            })}>
+                <Container size="lg" p="lg">
                     <TextInput
                         w={"70%"}
                         label="Imię"
@@ -90,6 +108,17 @@ export default function ApplyForm({contestId, contestName}: ApplyFormProps) {
                         classNames={classes}
                         onBlur={(e) => form.validateField('nickname')}
                         rightSection={toolTip('Będzie używane zamist imienia')}
+                    />
+                    <DatePickerInput
+                        my="sm"
+                        w={"70%"}
+                        label="Data urodzenia"
+                        key={form.key('birthday')}
+                        placeholder="Wprowadź datę urodzenia"
+                        rightSection={toolTip('Będzie użyta do wyliczenia wieku i weryfikacji przez organizatorów')}
+                        {...form.getInputProps('birthday')}
+                        onBlur={(e) => form.validateField('birthday')}
+
                     />
                     <TextInput
                         w={"70%"}
@@ -147,6 +176,21 @@ export default function ApplyForm({contestId, contestName}: ApplyFormProps) {
                     />
                     <Textarea
                         w={"70%"}
+                        label="Jakie masz plany po ewentualnej wygranej"
+                        placeholder="Opisz co chcesz zrobić jeśli wygrasz..."
+                        required
+                        autosize
+                        key={form.key('plans')}
+                        {...form.getInputProps('plans')}
+                        autoComplete="nope"
+                        classNames={classes}
+                        minRows={3}
+                        maxRows={5}
+                        onBlur={(e) => form.validateField('plans')}
+                        rightSection={toolTip('Napisz w skrócie jakie masz plany jezli wygrasz')}
+                    />
+                    <Textarea
+                        w={"70%"}
                         label="Opisz co chcesz zaprezentować"
                         placeholder="Opisz co chcesz zaprezentować..."
                         required
@@ -190,8 +234,9 @@ export default function ApplyForm({contestId, contestName}: ApplyFormProps) {
                                    label="Zdjęcie sylwetki"
                                    directory={`contestants/${contestId}`}
                                    name="photo2"
-                                   parent={form} />
-                    <Button type="submit" onClick={(e) => e.preventDefault()} disabled={!form.isValid}
+                                   parent={form}/>
+                    <Button type="submit"
+                            disabled={!form.isValid}
                             classNames={classes}
                             variant="filled" size="lg" color="red" my="sm" w="70%">
                         Wyślij zgłoszenie

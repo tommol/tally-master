@@ -9,7 +9,6 @@ export async function GET(request:NextRequest, { params }: { params: Promise<{ c
             id: parseInt((await params).contestId)
         },
     });
-    console.log(contest);
     if (!contest) {
         throw new Error("Failed to fetch data");
     }

@@ -5,6 +5,7 @@ import { ContestInfoListItem } from "../components/ContestsTable/ContestsTable";
 import { ContestantGridItem } from "../components/CostentantsGrid/ContestantsGrid";
 import { JudgesGridItem } from "../components/JudgesGrid/JudgesGrid";
 import {ContestInfoType} from "../components/ContestInfo/ContestInfo";
+import {ApplyFormType} from "../components/ApplyForm/schema";
 
 export interface ContestAction {
   enableJudging?: boolean;
@@ -172,6 +173,16 @@ export async function toggleContestJudging(judging:boolean, contestId:number) {
     throw new Error("Failed to fetch data");
   }
 }
-
+export async function sendApplication(contestId:string,data:ApplyFormType){
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contests/${contestId}/contestants`, {
+    cache: "no-store", // Ensures fresh data every request
+    method: "POST",
+    body: JSON.stringify(data)
+  });
+  if (!response.ok) {
+    throw new Error("Failed to fetch data");
+  }
+  return true;
+}
 
 

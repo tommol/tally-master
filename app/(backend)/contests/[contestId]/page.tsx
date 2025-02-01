@@ -29,14 +29,14 @@ export default function Contest({
     params: Promise<{ contestId: string }>
 }) {
     const {contestId, judgeId} = useParams<{ contestId: string; judgeId: string }>()
-    const [contest, setContest] = useState<ContestInfoType |null>(null);
+    const [contest, setContest] = useState<ContestInfoType | null>(null);
     const [contestants, setContestants] = useState<ContestantGridItem[] | null>(null);
     const [judges, setJudges] = useState<JudgesGridItem[] | null>(null);
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        async function fetchContest(){
+        async function fetchContest() {
             try {
                 const {contestId} = await params;
                 console.log(contestId);
@@ -46,6 +46,7 @@ export default function Contest({
                 setError('Failed to fetch data');
             }
         }
+
         async function fetchContestantsData() {
             try {
                 const contestantsData = await getContestants(Number.parseInt(contestId)); // Invoke the server action
@@ -68,15 +69,15 @@ export default function Contest({
         }
 
         fetchContest();
-        if(contest) {
-            fetchContestantsData();
-            fetchJudgesData();
-        }
+
+        fetchContestantsData();
+        fetchJudgesData();
+
 
     }, []);
     return (
         <Container fluid p="md" mt={3} bd={1} miw={600}>
-            <ContestInfo data={contest ?? {}as ContestInfoType} />
+            <ContestInfo data={contest ?? {} as ContestInfoType}/>
             <ContestantsGrid data={contestants ?? []}/>
             <JudgesGrid data={judges ?? []} contestId={contestId}/>
         </Container>
