@@ -1,5 +1,5 @@
-import {Group, Paper, Image, Text, Switch, Flex, Title} from "@mantine/core";
-import { DateTimePicker } from '@mantine/dates';
+import {Group, Paper, Image, Text, Switch, Flex, Title, Loader, Skeleton} from "@mantine/core";
+import {DateTimePicker} from '@mantine/dates';
 import {
     setContestApplyEnd,
     setContestApplyStart,
@@ -7,10 +7,14 @@ import {
     setContestVotingStart,
     toggleContestJudging
 } from "../../app/actions";
-export type ContestInfoType ={
+import {useForm} from "@mantine/form";
+import {useState, useEffect, Suspense} from "react";
+import {revalidatePath} from "next/cache";
+
+export type ContestInfoType = {
     id: number;
     name: string;
-    year:string;
+    year: string;
     enableJudging: boolean;
     applyStart?: Date;
     applyEnd?: Date;
@@ -24,50 +28,90 @@ export interface ContestInfoProps {
 }
 
 export default function ContestInfo({data}: ContestInfoProps) {
-    return (
-        <Paper withBorder radius="md" p="xs">
+    const [loading, setLoading] = useState(true);
+    const [applyStart, setApplyStart] = useState<Date | null | undefined>(null);
+    const [applyEnd, setApplyEnd] = useState<Date | null | undefined>(null);
+    const [votingStart, setVotingStart] = useState<Date | null | undefined>(null);
+    const [votingEnd, setVotingEnd] = useState<Date | null | undefined>(null);
+    const handleApplyStartChange = async (date?: Date | null) => {
+        setApplyStart(date);
+        if (date) {
+            try {
+                setContestApplyStart(date, data.id)
+            } catch (error) {
+                console.error("Error sending date:", error);
+            }
+        }
+    };
+    const handleApplyEndChange = async (date?: Date | null) => {
+        setApplyStart(date);
+        if (date) {
+            try {
+                setContestApplyEnd(date, data.id)
+            } catch (error) {
+                console.error("Error sending date:", error);
+            }
+        }
+    };
+    const handlevotingStartChange = async (date?: Date | null) => {
+        setApplyStart(date);
+        if (date) {
+            try {
+                setContestVotingStart(date, data.id)
+            } catch (error) {
+                console.error("Error sending date:", error);
+            }
+        }
+    };
+    const handleVotingEndChange = async (date?: Date | null) => {
+        setApplyStart(date);
+        if (date) {
+            try {
+                setContestVotingEnd(date, data.id)
+            } catch (error) {
+                console.error("Error sending date:", error);
+            }
+        }
+    };
+    useEffect(() => {
+        setApplyStart(data.applyStart)
+        setApplyEnd(data.applyEnd)
+        setVotingEnd(data.votingEnd);
+        setVotingStart(data.votingStart);
+        setLoading(false);
+    }, [data])
+    return (<>
+        {!loading && <Paper withBorder radius="md" p="xs">
             <Group align="start">
                 <Image src={data.logo} alt="logo" width={200} maw={200}/>
                 <Flex direction="column">
                     <Title>{data.name} {data.year}</Title>
                     <Group my="sm">
                         <DateTimePicker label="Application Start"
+                                        dropdownType="modal"
                                         placeholder="Pick date and time"
-                                        value={data.applyStart}
-                                        onChange={async (e) => {
-                                            if(e instanceof Date) {
-                                                await setContestApplyStart(new Date(e.getDate()), data.id);
-                                            }
-                                        }}
+                                        value={applyStart}
+                                        onChange={handleApplyStartChange}
                         />
                         <DateTimePicker label="Application End"
                                         placeholder="Pick date and time"
-                                        value={data.applyEnd}
-                                        onChange={async (e) => {
-                                            if(e instanceof Date) {
-                                                await setContestApplyEnd(new Date(e.getDate()), data.id);
-                                            }
-                                        }}
+                                        value={applyEnd}
+                                        dropdownType="modal"
+                                        onChange={handleApplyEndChange}
                         />
                     </Group>
                     <Group my="sm">
                         <DateTimePicker label="Voting Start"
                                         placeholder="Pick date and time"
-                                        value={data.votingStart}
-                                        onChange={async (e) => {
-                                            if(e instanceof Date) {
-                                                await setContestVotingStart(new Date(e.getDate()), data.id);
-                                            }
-                                        }}
+                                        value={votingStart}
+                                        dropdownType="modal"
+                                        onChange={handlevotingStartChange}
                         />
                         <DateTimePicker label="Voting End"
                                         placeholder="Pick date and time"
-                                        value={data.votingEnd}
-                                        onChange={async (e) => {
-                                            if(e instanceof Date) {
-                                                await setContestVotingEnd(new Date(e.getDate()), data.id);
-                                            }
-                                        }}
+                                        value={votingEnd}
+                                        dropdownType="modal"
+                                        onChange={handleVotingEndChange}
                         />
                     </Group>
                     <Switch
@@ -76,11 +120,13 @@ export default function ContestInfo({data}: ContestInfoProps) {
                         size="md"
                         label="Judging enabled"
                         onChange={async (e) => {
-                                await toggleContestJudging(e.target.checked, data.id);
+                            await toggleContestJudging(e.target.checked, data.id);
                         }}
                     />
                 </Flex>
             </Group>
-        </Paper>
+        </Paper>}
+            {loading && <Skeleton />}
+        </>
     )
 }

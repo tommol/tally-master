@@ -1,5 +1,5 @@
 'use client';
-import React, {useEffect, useState} from "react";
+import React, {Suspense, useEffect, useState} from "react";
 import {
     Container,
     SimpleGrid,
@@ -77,9 +77,11 @@ export default function Contest({
     }, []);
     return (
         <Container fluid p="md" mt={3} bd={1} miw={600}>
-            <ContestInfo data={contest ?? {} as ContestInfoType}/>
-            <ContestantsGrid data={contestants ?? []}/>
-            <JudgesGrid data={judges ?? []} contestId={contestId}/>
+            <Suspense>
+                <ContestInfo data={contest ?? {} as ContestInfoType}/>
+                <ContestantsGrid data={contestants ?? []}/>
+                <JudgesGrid data={judges ?? []} contestId={contestId}/>
+            </Suspense>
         </Container>
     );
 }

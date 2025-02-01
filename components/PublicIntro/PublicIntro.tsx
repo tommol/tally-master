@@ -2,10 +2,9 @@
 import {Button, Container, Flex, Group, Image, Overlay, Text, Title} from '@mantine/core';
 import classes from './PublicIntro.module.css';
 import Link from "next/link";
-import NextImage from 'next/image';
 import React from "react";
 import {IconLogin} from "@tabler/icons-react";
-import {RegisterLink, LoginLink} from "@kinde-oss/kinde-auth-nextjs/components";
+import {LoginLink} from "@kinde-oss/kinde-auth-nextjs/components";
 
 export function PublicIntro() {
     return (
@@ -37,7 +36,7 @@ export function PublicIntro() {
                 </Text>
 
                 <Button variant="gradient" size="xl" radius="xl" className={classes.control} component={Link}
-                        href="https://wfw.plug.org.pl">
+                        href="https://wfw.plug.org.pl" target="_blank">
                     About WFW
                 </Button>
             </Container>

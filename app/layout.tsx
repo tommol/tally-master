@@ -1,4 +1,5 @@
 import "@mantine/core/styles.css";
+import '@mantine/dates/styles.css';
 import React from "react";
 import {
   MantineProvider,
@@ -22,8 +23,10 @@ export default function RootLayout({ children }: { children: any }) {
           content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
         />
       </head>
-      <body>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+      <body style={{ background: "var(--mantine-color-gray-2)"}}>
+        <MantineProvider theme={theme}>
+            <div style={{width: '100%'}}>{children}
+            </div></MantineProvider>
       </body>
     </html>
   );

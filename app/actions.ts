@@ -59,6 +59,7 @@ export async function getContests(): Promise<ContestInfoListItem[]> {
     throw new Error("Failed to fetch data");
   }
   const data = await response.json();
+
   return data;
 }
 
@@ -73,7 +74,15 @@ export async function getContest(id:number): Promise<ContestInfoType> {
   }
   const data = await response.json();
   console.log(data);
-  return data;
+  const mapped= {
+    ...data,
+    applyStart: data.applyStart != null ? new Date(data.applyStart) : undefined,
+    applyEnd: data.applyEnd != null ? new Date(data.applyEnd): undefined,
+    votingStart:data.votingStart != null? new Date(data.votingStart): undefined,
+    votingEnd: data.votingEnd != null ? new Date(data.votingEnd): undefined,
+  }
+  console.log(mapped);
+  return mapped;
 }
 
 export async function getContestants(contestId:number): Promise<ContestantGridItem[]> {

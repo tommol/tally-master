@@ -1,0 +1,58 @@
+.card {
+    position: relative;
+    overflow: visible;
+    padding-top: calc(var(--mantine-spacing-xl) * 1.5 + 60px);
+    border: 2px solid var(--mantine-color-blue-5);
+    border-radius: var(--mantine-radius-md);
+    background: linear-gradient(to bottom, var(--mantine-color-blue-4), var(--mantine-color-blue-2));
+    margin-bottom: var(--mantine-spacing-xl);
+}
+
+.icon {
+    position: absolute;
+    top: -30px;
+    left: calc(50% - 40px);
+    border: 2px solid var(--mantine-color-blue-5);
+    border-radius: var(--mantine-radius-md)
+}
+
+.title {
+    font-family: Greycliff CF,
+    var(--mantine-font-family);
+    line-height: 1;
+    font-size: 32px;
+    font-weight: 900;
+    color: white;
+    padding-bottom: var(--mantine-spacing-md);
+}
+
+.content {
+    padding: calc(1.5 * var(--mantine-spacing-xl));
+    background: white;
+    border-radius: var(--mantine-radius-md)
+}
+
+.unselected {
+    border: 2px solid var(--mantine-color-gray-5);
+    margin: var(--mantine-spacing-md);
+    border-radius: var(--mantine-radius-lg);
+    background: var(--mantine-color-gray-1);
+
+    img {
+        border-bottom-left-radius: var(--mantine-radius-lg);
+        border-top-left-radius: var(--mantine-radius-lg);
+    }
+}
+
+.selected {
+    border: 2px solid var(--mantine-color-blue-5);
+    margin: var(--mantine-spacing-md);
+    border-radius: var(--mantine-radius-lg);
+    background: var(--mantine-color-blue-1);
+    box-shadow: var(--mantine-shadow-md);
+
+    img {
+        border-bottom-left-radius: var(--mantine-radius-lg);
+        border-top-left-radius: var(--mantine-radius-lg);
+    }
+}

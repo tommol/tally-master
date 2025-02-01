@@ -63,7 +63,7 @@ export async function PUT(request:NextRequest, { params }: { params: Promise<{ c
                 id: Number.parseInt(contestId)
             },
             data: {
-                applyStart:body.applyStart
+                votingStart:body.votingStart
             }
         });
     }
@@ -73,7 +73,7 @@ export async function PUT(request:NextRequest, { params }: { params: Promise<{ c
                 id: Number.parseInt(contestId)
             },
             data: {
-                applyEnd:body.applyEnd
+                votingEnd:body.votingEnd
             }
         });
     }
